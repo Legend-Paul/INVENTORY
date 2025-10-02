@@ -1,1 +1,33 @@
+.summary {
+    position: fixed;
+    top: 6rem;
+    left: 50%;
+    width: clamp(250px, 70%, 600px);
+    transform: translateX(-50%);
+    padding: 0 var(--space-md);
+    background-color: var(--bg-white);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
+    z-index: 1000;
+    .inventory-fields {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        p {
+            font-size: var(--text-sm);
+        }
+    }
+    i {
+        font-size: var(--text-h3);
+        color: var(--text-dark);
+        transition: var(--transition-fast);
+        cursor: pointer;
+        &:hover {
+            color: var(--primary);
+        }
+    }
+}

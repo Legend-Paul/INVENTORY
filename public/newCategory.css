@@ -1,0 +1,54 @@
+body {
+    margin-top: 7rem;
+}
+form {
+    max-width: 600px;
+    margin: auto;
+    display: grid;
+    gap: var(--space-lg);
+    padding-bottom: var(--space-lg);
+    background-color: var(--bg-white);
+    box-shadow: var(--shadow-sm);
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    & > div {
+        display: grid;
+        gap: var(--space-md);
+    }
+    label {
+        font-weight: var(--font-medium);
+        color: var(--text-dark);
+    }
+    input,
+    select,
+    textarea {
+        padding: var(--space-sm);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        font-size: var(--text-md);
+        color: var(--text-dark);
+        background-color: var(--bg-white);
+        resize: vertical;
+    }
+    input:focus,
+    select:focus,
+    textarea:focus {
+        outline: none;
+        border-color: var(--secondary);
+        box-shadow: 0 0 0 3px var(--primary-light);
+    }
+    button {
+        padding: var(--space-sm) var(--space-md);
+        border: none;
+        border-radius: var(--radius-sm);
+        background-color: var(--primary);
+        color: var(--bg-white);
+        font-size: var(--text-md);
+        font-weight: var(--font-medium);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        &:hover {
+            background-color: var(--secondary);
+        }
+    }
+}

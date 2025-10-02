@@ -162,7 +162,7 @@ a {
     font-size: var(--text-h3);
     transition: var(--transition-fast);
     &:hover {
-        background-color: var(--primary-hover);
+        background-color: var(--secondary);
         box-shadow: var(--shadow-md);
         transform: translateY(-2px);
     }

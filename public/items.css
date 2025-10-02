@@ -17,6 +17,11 @@ h3 {
     border-bottom: 2px solid var(--border);
     padding: var(--space-sm) 0;
 }
+.category-name {
+    font-size: var(--text-sm);
+    color: var(--secondary);
+    margin: var(--space-xs) 0;
+}
 
 .item-summary-actions {
     display: flex;

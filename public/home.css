@@ -15,7 +15,14 @@
         color: var(--text-medium);
     }
 }
-
+.card-summary {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: var(--text-sm);
+    margin: var(--space-sm) 0;
+    color: var(--text-light);
+}
 .c-t-a {
     display: flex;
     justify-content: space-between;

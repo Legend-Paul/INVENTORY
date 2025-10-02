@@ -44,10 +44,10 @@
                 <% } else { %> <% items.forEach(item => { %>
                 <div class="card item-card">
                     <div class="item-details">
-                        <h3><%= item.name %></h3>
-                        <em>Electronics</em>
+                        <h3><%= item.item_name %></h3>
+                        <p class="category-name"><%= item.category_name %></p>
                         <div class="item-description">
-                            <p><%= item.description %></p>
+                            <p><%= item.item_description %></p>
                         </div>
                     </div>
                     <div class="item-summary-actions">

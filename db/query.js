@@ -2,7 +2,9 @@ const pool = require("./pool");
 
 // Categories queries
 const getAllCategories = async () => {
-    const { rows } = await pool.query("SELECT * FROM categories");
+    const { rows } = await pool.query(
+        "SELECT c.id, c.name, c.description, SUM(quantity) As quantity, SUM(quantity * price) AS price FROM categories AS c  JOIN items ON c.id = items.category_id GROUP BY c.id"
+    );
     return rows;
 };
 
@@ -70,7 +72,10 @@ const getCategoryItemsCount = async (categoryId) => {
 
 // Items queries
 const getAllItems = async () => {
-    const { rows } = await pool.query("SELECT * FROM items");
+    const { rows } = await pool.query(
+        `SELECT i.name As item_name, i.description AS item_description,  c.name AS category_name, i.price, i.quantity, i.id
+        FROM items i JOIN categories c ON i.category_id = c.id`
+    );
     return rows;
 };
 

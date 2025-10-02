@@ -50,12 +50,22 @@ const getCategoryTotalQuantity = async (categoryId) => {
         "SELECT SUM(quantity) FROM items WHERE category_id = $1",
         [categoryId]
     );
+    return rows[0].sum;
 };
 const getCategoryTotalPrice = async (categoryId) => {
     const { rows } = await pool.query(
         "SELECT SUM(price * quantity) FROM items WHERE category_id = $1",
         [categoryId]
     );
+    return rows[0].sum;
+};
+
+const getCategoryItemsCount = async (categoryId) => {
+    const { rows } = await pool.query(
+        "SELECT COUNT(*) FROM items WHERE category_id = $1",
+        [categoryId]
+    );
+    return rows[0].count;
 };
 
 // Items queries
@@ -130,6 +140,7 @@ module.exports = {
     getCategorycount,
     getCategoryTotalQuantity,
     getCategoryTotalPrice,
+    getCategoryItemsCount,
     getItemCount,
     getTotalQuantity,
     getTotalPrice,

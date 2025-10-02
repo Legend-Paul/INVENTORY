@@ -5,13 +5,36 @@ const getCategoryItems = async (req, res) => {
         const categoryId = req.query.category;
         if (categoryId) {
             const items = await query.getItemsByCategoryId(categoryId);
+            // Fetch additional category details
             const category = await query.getCategoryById(categoryId);
+            const itemsCount = await query.getCategoryItemsCount(categoryId);
+            const quantities = await query.getCategoryTotalQuantity(categoryId);
+            const price = await query.getCategoryTotalPrice(categoryId);
+            console.log(quantities);
+            if (category.length === 0) {
+                return res.status(404).send("Category not found");
+            }
 
             const categoryName = category[0].name;
-            return res.render("items", { items, categoryName });
+            return res.render("items", {
+                items,
+                categoryName,
+                itemsCount,
+                quantities,
+                price,
+            });
         }
+        const itemsCount = await query.getItemCount();
+        const quantities = await query.getTotalQuantity();
+        const price = await query.getTotalPrice();
         const items = await query.getAllItems();
-        res.render("items", { items, categoryName: "All Items" });
+        res.render("items", {
+            items,
+            categoryName: "All Items",
+            itemsCount,
+            quantities,
+            price,
+        });
     } catch (err) {
         throw err;
     }

@@ -4,6 +4,7 @@ header {
     left: var(--space-sm);
     right: var(--space-sm);
     margin: var(--space-md) auto;
+    max-width: var(--max-width-lg);
     background-color: var(--primary);
     padding: 10px 20px;
     border-radius: var(--space-lg);
@@ -22,7 +23,7 @@ header {
     font-weight: var(--font-bold);
     text-decoration: none;
     display: flex;
-    gap: var(--space-lg);
+    gap: var(--space-sm);
     .img-container {
         width: 40px;
         height: 40px;
@@ -50,7 +51,6 @@ nav {
         align-items: center;
         background: var(--text-light);
         border-radius: var(--radius-sm);
-        /* flex-direction: column; */
 
         padding: 0 var(--space-xs);
         i {

@@ -11,18 +11,19 @@ const getCategoryItems = async (req, res) => {
             const itemsCount = await query.getCategoryItemsCount(categoryId);
             const quantities = await query.getCategoryTotalQuantity(categoryId);
             const price = await query.getCategoryTotalPrice(categoryId);
+
+            console.log(items);
             if (category.length === 0) {
                 throw new CustomError("Category not found", 404);
             }
 
-            const categoryName = category[0].name;
+            const categoryName = category.name;
             return res.render("items", {
                 items,
                 categoryName,
                 itemsCount,
                 quantities,
                 price,
-                categoryId,
             });
         }
         const itemsCount = await query.getItemCount();
@@ -37,7 +38,7 @@ const getCategoryItems = async (req, res) => {
             price,
         });
     } catch (err) {
-        throw new CustomError("Failed to load items", 500);
+        throw err;
     }
 };
 

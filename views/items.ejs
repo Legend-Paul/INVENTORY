@@ -56,7 +56,9 @@
                             <p>Amount: <%= item.price %></p>
                         </div>
                         <div class="item-actions">
-                            <a class="edit" href="/update/item/<%= item.id %>"
+                            <a
+                                class="edit"
+                                href="/update/item/<%= item.id %>?category=<%=item.category_id%>"
                                 ><i class="bi bi-pencil-square"></i
                             ></a>
                             <a class="delete" href="/delete/<%= item.id %>"

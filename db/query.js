@@ -29,8 +29,8 @@ const getCategoryById = async (categoryId) => {
 
 const getCategoryItems = async (categoryId) => {
     const { rows } = await pool.query(
-        `SELECT id, name AS item_name, description AS item_description, quantity, price 
-        FROM items WHERE category_id = $1`,
+        `SELECT i.id, i.name AS item_name, i.description AS item_description, quantity, price, c.id AS category_id
+        FROM items i JOIN categories c ON  c.id = category_id WHERE  category_id = $1`,
         [categoryId]
     );
     return rows;
@@ -112,10 +112,11 @@ const insertNewItem = async (
     );
 };
 
-const updateItem = async (itemId, name, description, quantity, category_id) => {
+const updateItem = async (itemId, name, price, quantity, description) => {
     await pool.query(
-        "UPDATE items SET name = $1, description = $2, quantity = $3, category_id = $4 WHERE id = $5",
-        [name, description, quantity, category_id, itemId]
+        `UPDATE items SET name = $1, price = $2, quantity = $3, description = $4
+         WHERE id = $5`,
+        [name, price, quantity, description, itemId]
     );
 };
 

@@ -17,6 +17,7 @@
         <%- include ('partials/header') %>
         <form action="<%= path %>" method="post">
             <h2><%=title %></h2>
+
             <div class="item-name">
                 <label for="name">Item Name:</label>
                 <input
@@ -52,7 +53,7 @@
             <div class="item-quantity">
                 <label for="Quantity">Item Quantity:</label>
                 <input
-                    type="text"
+                    type="number"
                     id="quantity"
                     name="quantity"
                     placeholder="e.g 10"

@@ -9,12 +9,13 @@
         />
         <link rel="stylesheet" href="/styles.css" />
         <link rel="stylesheet" href="/header.css" />
-        <link rel="stylesheet" href="/newItem.css" />
+        <link rel="stylesheet" href="/new.css" />
         <title>InvenTrack</title>
     </head>
     <body>
         <%- include ('partials/header') %>
         <form action="/new/item" method="post">
+            <input type="hidden" name="category" value="<%= categoryId %>" />
             <div class="item-name">
                 <label for="name">Item Name:</label>
                 <input
@@ -31,25 +32,26 @@
                     type="number"
                     id="amount"
                     name="amount"
-                    placeholder="e.g 100"
+                    placeholder="amount e.g 100"
                     required
+                    min="1"
                 />
                 <input
                     type="number"
                     id="decimal"
                     name="decimal"
-                    placeholder="e.g 99"
-                    required
+                    placeholder="cents e.g 55"
                     max="99"
+                    min="0"
                 />
             </div>
             <div class="item-quantity">
                 <label for="Quantity">Item Quantity:</label>
                 <input
                     type="text"
-                    id="quabtity"
-                    name="quabtity"
-                    placeholder="e.g Electronics"
+                    id="quantity"
+                    name="quantity"
+                    placeholder="e.g 10"
                     required
                 />
             </div>

@@ -99,10 +99,16 @@ const getItemsByCategoryId = async (categoryId) => {
     return rows;
 };
 
-const addItem = async (name, description, quantity, category_id) => {
+const insertNewItem = async (
+    name,
+    price,
+    quantity,
+    description,
+    category_id
+) => {
     await pool.query(
-        "INSERT INTO items (name, description, quantity, category_id) VALUES ($1, $2, $3, $4)",
-        [name, description, quantity, category_id]
+        "INSERT INTO items (name, price, quantity, description, category_id) VALUES ($1, $2, $3, $4, $5)",
+        [name, price, quantity, description, category_id]
     );
 };
 
@@ -144,7 +150,7 @@ module.exports = {
     getAllItems,
     getItemById,
     getItemsByCategoryId,
-    addItem,
+    insertNewItem,
     updateItem,
     deleteItem,
     getCategorycount,

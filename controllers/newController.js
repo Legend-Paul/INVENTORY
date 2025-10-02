@@ -19,21 +19,20 @@ const insertNewCategory = async (req, res) => {
 };
 
 const openNewItemPage = async (req, res) => {
-    res.render("newItem");
+    const categoryId = req.query.category;
+    res.render("newItem", { categoryId });
 };
 
 const insertNewItem = async (req, res) => {
-    const { name, description, quantity, price, category_id } = req.body;
+    const { name, description, quantity, amount, decimal, category } = req.body;
+
     try {
-        console.log(name, description, quantity, price, category_id);
-        await query.insertNewItem(
-            name,
-            description,
-            quantity,
-            price,
-            category_id
-        );
-        res.redirect("/");
+        const decimalPlace = decimal ? parseInt(decimal) : 0;
+        const price =
+            parseInt(amount) + parseFloat(decimalPlace.toFixed(2, 0) / 100);
+        console.log(name, description, quantity, price.toFixed(2, 0), category);
+        await query.insertNewItem(name, price, quantity, description, category);
+        res.redirect(`/items?category=${category}`);
     } catch (err) {
         throw err;
     }

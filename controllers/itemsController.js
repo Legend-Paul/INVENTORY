@@ -22,6 +22,7 @@ const getCategoryItems = async (req, res) => {
                 itemsCount,
                 quantities,
                 price,
+                categoryId,
             });
         }
         const itemsCount = await query.getItemCount();

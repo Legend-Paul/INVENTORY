@@ -4,7 +4,7 @@ const CustomError = require("../error/customError");
 
 // Render form to create a new category
 const openNewCategoryPage = (req, res) => {
-    res.render("newCategory");
+    res.render("newCategory", { title: "New Category" });
 };
 
 const insertNewCategory = async (req, res) => {

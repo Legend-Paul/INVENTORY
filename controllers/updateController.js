@@ -11,6 +11,13 @@ const openUpdateCategoryPage = async (req, res) => {
     });
 };
 
+const updateCategory = async (req, res) => {
+    const { name, description } = req.body;
+    await query.updateCategory(req.params.id, name, description);
+    res.redirect("/");
+};
+
 module.exports = {
     openUpdateCategoryPage,
+    updateCategory,
 };

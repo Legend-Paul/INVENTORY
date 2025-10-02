@@ -41,7 +41,7 @@
             <div class="categories">
                 <% categories.forEach(category => { %>
                 <div class="category-card">
-                    <a href="/items?category=<%= category._id %>">
+                    <a href="/items?category=<%= category.id %>">
                         <div class="category-header">
                             <i class="bi bi-layers"></i>
                             <h2><%= category.name %></h2>
@@ -51,7 +51,7 @@
                         </div>
                     </a>
                     <div class="c-t-a">
-                        <a href="/items?category=<%= category._id %>"
+                        <a href="/items?category=<%= category.id %>"
                             ><i class="bi bi-box-arrow-up-right"></i
                         ></a>
                         <div class="modification">

@@ -3,6 +3,7 @@ const pool = require("./db/pool");
 const path = require("node:path");
 require("dotenv").config();
 const homeRouter = require("./routes/homeRouter");
+const itemsRouter = require("./routes/itemsRouter");
 const query = require("./db/query");
 
 const app = express();
@@ -16,6 +17,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+app.use("/items", itemsRouter);
 app.use("/", homeRouter);
 
 pool.connect((err, client, release) => {

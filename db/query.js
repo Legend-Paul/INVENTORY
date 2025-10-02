@@ -18,7 +18,7 @@ const getCategoryById = async (categoryId) => {
         "SELECT * FROM categories WHERE id = $1",
         [categoryId]
     );
-    return rows[0];
+    return rows;
 };
 
 const getCategoryItems = async (categoryId) => {
@@ -50,7 +50,15 @@ const getItemById = async (itemId) => {
     const { rows } = await pool.query("SELECT * FROM items WHERE id = $1", [
         itemId,
     ]);
-    return rows[0];
+    return rows;
+};
+
+const getItemsByCategoryId = async (categoryId) => {
+    const { rows } = await pool.query(
+        "SELECT * FROM items WHERE category_id = $1",
+        [categoryId]
+    );
+    return rows;
 };
 
 const addItem = async (name, description, quantity, category_id) => {
@@ -80,6 +88,7 @@ module.exports = {
     updateCategory,
     getAllItems,
     getItemById,
+    getItemsByCategoryId,
     addItem,
     updateItem,
     deleteItem,

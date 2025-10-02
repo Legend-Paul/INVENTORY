@@ -103,7 +103,7 @@ a {
         }
         .summary-field-name {
             position: absolute;
-            bottom: -1.5rem;
+            bottom: -1.25rem;
             opacity: 0;
             transition: var(--transition-fast);
         }

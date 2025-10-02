@@ -1,0 +1,71 @@
+:root {
+    /* ===== COLORS ===== */
+    --primary: #9333ea;
+    --primary-hover: #7e22ce;
+    --primary-light: #f3e8ff;
+    --secondary: #2563eb;
+    --success: #16a34a;
+    --danger: #dc2626;
+
+    --text-dark: #1f2937;
+    --text-medium: #4b5563;
+    --text-light: #929396;
+
+    --bg-light: #f9fafb;
+    --bg-white: #ffffff;
+    --border: #e5e7eb;
+
+    /* ===== SHADOWS ===== */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+    /* ===== TRANSITIONS ===== */
+    --transition-fast: all 0.15s ease;
+    --transition-normal: all 0.3s ease;
+
+    /* ===== BORDER RADIUS ===== */
+    --radius-sm: 0.375rem; /* 6px */
+    --radius-md: 0.5rem; /* 8px */
+
+    /* ===== TYPOGRAPHY ===== */
+    --text-h1: 2.25rem; /* 36px */
+    --text-h2: 1.875rem; /* 30px */
+    --text-h3: 1.5rem; /* 24px */
+    --text-h4: 1.25rem; /* 20px */
+    --text-base: 1rem; /* 16px */
+    --text-sm: 0.875rem; /* 14px */
+
+    /* ===== SPACING ===== */
+    --space-xs: 0.5rem; /* 8px */
+    --space-sm: 1rem; /* 16px */
+    --space-md: 1.5rem; /* 24px */
+    --space-lg: 2rem; /* 32px */
+
+    /* ===== FONT WEIGHTS ===== */
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+
+    /* ===== MAX WIDTHS (for containers) ===== */
+    --max-width-sm: 640px;
+    --max-width-md: 768px;
+    --max-width-lg: 1024px;
+    --max-width-xl: 1280px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    max-width: var(--max-width-lg);
+    margin: auto;
+    margin-top: 5rem;
+    padding: var(--space-lg);
+}

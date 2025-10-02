@@ -17,11 +17,11 @@ app.set("view engine", "ejs");
 
 app.use("/", homeRouter);
 
-pool.connect((err, client, release) => {
-    if (err) throw err;
-    console.log("Database connected");
-    release();
-});
+// pool.connect((err, client, release) => {
+//     if (err) throw err;
+//     console.log("Database connected");
+//     release();
+// });
 
 app.listen(PORT, (err) => {
     if (err) throw err;

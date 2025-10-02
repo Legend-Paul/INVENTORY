@@ -3,6 +3,7 @@ const pool = require("./db/pool");
 const path = require("node:path");
 require("dotenv").config();
 const homeRouter = require("./routes/homeRouter");
+const query = require("./db/query");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -17,11 +18,11 @@ app.set("view engine", "ejs");
 
 app.use("/", homeRouter);
 
-// pool.connect((err, client, release) => {
-//     if (err) throw err;
-//     console.log("Database connected");
-//     release();
-// });
+pool.connect((err, client, release) => {
+    if (err) throw err;
+    console.log("Database connected");
+    release();
+});
 
 app.listen(PORT, (err) => {
     if (err) throw err;

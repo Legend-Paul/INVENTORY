@@ -33,6 +33,31 @@
                 <p>700</p>
             </div>
         </div>
-        <main></main>
+        <main>
+            <div class="categories">
+                <% categories.forEach(category => { %>
+                <div class="category-card">
+                    <div class="category-header">
+                        <h2><%= category.name %></h2>
+                        <i class="bi bi-layers"></i>
+                    </div>
+                    <div class="category-description">
+                        <p><%= category.description %></p>
+                    </div>
+                    <div class="c-t-a">
+                        <a href="/items?category=<%= category._id %>"
+                            >View Items</a
+                        >
+                        <a href="/delete/<%=category.id%>"
+                            ><i class="bi bi-trash3"></i
+                        ></a>
+                        <a href="/edit/<%=category.id%>"
+                            ><i class="bi bi-pencil-square"></i
+                        ></a>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+        </main>
     </body>
 </html>

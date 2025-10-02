@@ -2,7 +2,7 @@ const pool = require("./pool");
 
 // Categories queries
 const getAllCategories = async () => {
-    const [rows] = await pool.query("SELECT * FROM categories");
+    const { rows } = await pool.query("SELECT * FROM categories");
     return rows;
 };
 
@@ -14,14 +14,15 @@ const addCategory = async (name, description) => {
 };
 
 const getCategoryById = async (categoryId) => {
-    const [rows] = await pool.query("SELECT * FROM categories WHERE id = $1", [
-        categoryId,
-    ]);
+    const { rows } = await pool.query(
+        "SELECT * FROM categories WHERE id = $1",
+        [categoryId]
+    );
     return rows[0];
 };
 
 const getCategoryItems = async (categoryId) => {
-    const [rows] = await pool.query(
+    const { rows } = await pool.query(
         "SELECT * FROM items WHERE category_id = $1",
         [categoryId]
     );
@@ -41,12 +42,12 @@ const updateCategory = async (categoryId, name, description) => {
 
 // Items queries
 const getAllItems = async () => {
-    const [rows] = await pool.query("SELECT * FROM items");
+    const { rows } = await pool.query("SELECT * FROM items");
     return rows;
 };
 
 const getItemById = async (itemId) => {
-    const [rows] = await pool.query("SELECT * FROM items WHERE id = $1", [
+    const { rows } = await pool.query("SELECT * FROM items WHERE id = $1", [
         itemId,
     ]);
     return rows[0];

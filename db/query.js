@@ -40,6 +40,24 @@ const updateCategory = async (categoryId, name, description) => {
     );
 };
 
+const getCategorycount = async () => {
+    const { rows } = await pool.query("SELECT COUNT(*) FROM categories");
+    return rows[0].count;
+};
+
+const getCategoryTotalQuantity = async (categoryId) => {
+    const { rows } = await pool.query(
+        "SELECT SUM(quantity) FROM items WHERE category_id = $1",
+        [categoryId]
+    );
+};
+const getCategoryTotalPrice = async (categoryId) => {
+    const { rows } = await pool.query(
+        "SELECT SUM(price * quantity) FROM items WHERE category_id = $1",
+        [categoryId]
+    );
+};
+
 // Items queries
 const getAllItems = async () => {
     const { rows } = await pool.query("SELECT * FROM items");
@@ -79,6 +97,23 @@ const deleteItem = async (itemId) => {
     await pool.query("DELETE FROM items WHERE id = $1", [itemId]);
 };
 
+const getItemCount = async () => {
+    const { rows } = await pool.query("SELECT COUNT(*) FROM items");
+    return rows[0].count;
+};
+
+const getTotalQuantity = async () => {
+    const { rows } = await pool.query("SELECT SUM(quantity) FROM items");
+    return rows[0].sum;
+};
+
+const getTotalPrice = async () => {
+    const { rows } = await pool.query(
+        "SELECT SUM(price * quantity) FROM items"
+    );
+    return rows[0].sum;
+};
+
 module.exports = {
     getAllCategories,
     addCategory,
@@ -92,4 +127,10 @@ module.exports = {
     addItem,
     updateItem,
     deleteItem,
+    getCategorycount,
+    getCategoryTotalQuantity,
+    getCategoryTotalPrice,
+    getItemCount,
+    getTotalQuantity,
+    getTotalPrice,
 };

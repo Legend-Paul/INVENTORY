@@ -1,4 +1,5 @@
 const query = require("../db/query");
+const CustomError = require("../error/customError");
 
 // Get all categories
 
@@ -16,8 +17,8 @@ const getAllCategories = async (req, res) => {
             quantities,
             price,
         });
-    } catch (error) {
-        throw error;
+    } catch (err) {
+        throw new CustomError("Failed to load categories", 500);
     }
 };
 

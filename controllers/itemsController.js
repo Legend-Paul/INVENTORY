@@ -1,4 +1,5 @@
 const query = require("../db/query");
+const CustomError = require("../error/customError");
 
 const getCategoryItems = async (req, res) => {
     try {
@@ -12,7 +13,7 @@ const getCategoryItems = async (req, res) => {
             const price = await query.getCategoryTotalPrice(categoryId);
 
             if (category.length === 0) {
-                return res.status(404).send("Category not found");
+                throw new CustomError("Category not found", 404);
             }
 
             const categoryName = category[0].name;
@@ -36,7 +37,7 @@ const getCategoryItems = async (req, res) => {
             price,
         });
     } catch (err) {
-        throw err;
+        throw new CustomError("Failed to load items", 500);
     }
 };
 

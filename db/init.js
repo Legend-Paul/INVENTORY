@@ -1,4 +1,5 @@
 const pool = require("./pool");
+const CustomError = require("../error/customError");
 
 const createCategoriesTable = async () => {
     try {
@@ -15,7 +16,7 @@ const createCategoriesTable = async () => {
 				);
 			`);
     } catch (err) {
-        throw err;
+        throw new CustomError("Failed to create categories table", 500);
     }
 };
 
@@ -37,7 +38,7 @@ const createItemsTable = async () => {
 			);
 		`);
     } catch (err) {
-        throw err;
+        throw new CustomError("Failed to create items table", 500);
     }
 };
 

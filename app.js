@@ -5,6 +5,8 @@ require("dotenv").config();
 const homeRouter = require("./routes/homeRouter");
 const itemsRouter = require("./routes/itemsRouter");
 const query = require("./db/query");
+const errorController = require("./controllers/errorController");
+const CustomError = require("./error/customError");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -21,10 +23,12 @@ app.use("/items", itemsRouter);
 app.use("/", homeRouter);
 
 pool.connect((err, client, release) => {
-    if (err) throw err;
+    if (err) throw new CustomError("Database connection failed", 500);
     console.log("Database connected");
     release();
 });
+
+app.use(errorController);
 
 app.listen(PORT, (err) => {
     if (err) throw err;

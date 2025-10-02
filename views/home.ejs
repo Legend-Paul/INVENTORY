@@ -19,41 +19,49 @@
             <div class="inventory-fields categories">
                 <i class="bi bi-layers"></i>
                 <p>2</p>
+                <p class="summary-field-name">Category</p>
             </div>
             <div class="inventory-fields items">
                 <i class="bi bi-list-ul"></i>
                 <p>2</p>
+                <p class="summary-field-name">Items</p>
             </div>
             <div class="inventory-fields quatities">
                 <i class="bi bi-basket-fill"></i>
                 <p>3</p>
+                <p class="summary-field-name">Quantity</p>
             </div>
             <div class="inventory-fields costs">
                 <i class="bi bi-cash-coin"></i>
                 <p>700</p>
+                <p class="summary-field-name">Cash</p>
             </div>
         </div>
         <main>
             <div class="categories">
                 <% categories.forEach(category => { %>
                 <div class="category-card">
-                    <div class="category-header">
-                        <h2><%= category.name %></h2>
-                        <i class="bi bi-layers"></i>
-                    </div>
-                    <div class="category-description">
-                        <p><%= category.description %></p>
-                    </div>
+                    <a href="/items?category=<%= category._id %>">
+                        <div class="category-header">
+                            <i class="bi bi-layers"></i>
+                            <h2><%= category.name %></h2>
+                        </div>
+                        <div class="category-description">
+                            <p><%= category.description %></p>
+                        </div>
+                    </a>
                     <div class="c-t-a">
                         <a href="/items?category=<%= category._id %>"
-                            >View Items</a
-                        >
-                        <a href="/delete/<%=category.id%>"
-                            ><i class="bi bi-trash3"></i
+                            ><i class="bi bi-box-arrow-up-right"></i
                         ></a>
-                        <a href="/edit/<%=category.id%>"
-                            ><i class="bi bi-pencil-square"></i
-                        ></a>
+                        <div class="modification">
+                            <a class="delete" href="/delete/<%=category.id%>"
+                                ><i class="bi bi-trash3"></i
+                            ></a>
+                            <a class="edit" href="/edit/<%=category.id%>"
+                                ><i class="bi bi-pencil-square"></i
+                            ></a>
+                        </div>
                     </div>
                 </div>
                 <% }) %>

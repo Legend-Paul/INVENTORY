@@ -66,6 +66,13 @@ body {
     line-height: 1.6;
     max-width: var(--max-width-lg);
     margin: auto;
-    margin-top: 5rem;
+    margin-top: 10rem;
     padding: var(--space-lg);
+}
+
+i {
+    font-size: var(--text-h3);
+}
+a {
+    text-decoration: none;
 }

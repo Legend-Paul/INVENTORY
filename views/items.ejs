@@ -16,7 +16,24 @@
     </head>
     <body>
         <%- include('partials/header') %>
-        <div class="category-header">
+        <div class="summary">
+            <div class="inventory-fields items">
+                <i class="bi bi-list-ul"></i>
+                <p>2</p>
+                <p class="summary-field-name">Items</p>
+            </div>
+            <div class="inventory-fields quatities">
+                <i class="bi bi-basket-fill"></i>
+                <p>3</p>
+                <p class="summary-field-name">Quantity</p>
+            </div>
+            <div class="inventory-fields costs">
+                <i class="bi bi-cash-coin"></i>
+                <p>700</p>
+                <p class="summary-field-name">Cash</p>
+            </div>
+        </div>
+        <div class="item-header">
             <i class="bi bi-layers"></i>
             <h2><%= locals.categoryName %></h2>
         </div>
@@ -25,10 +42,12 @@
                 <% if (items.length === 0) { %>
                 <p class="no-items-message">No items in this category.</p>
                 <% } else { %> <% items.forEach(item => { %>
-                <div class="item-card">
+                <div class="card item-card">
                     <div class="item-details">
                         <h3><%= item.name %></h3>
-                        <p><%= item.description %></p>
+                        <div class="item-description">
+                            <p><%= item.description %></p>
+                        </div>
                     </div>
                     <div class="item-summary-actions">
                         <div class="items-summary">

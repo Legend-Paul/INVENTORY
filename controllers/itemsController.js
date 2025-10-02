@@ -4,8 +4,10 @@ const getCategoryItems = async (req, res) => {
     try {
         const categoryId = req.query.category;
         const items = await query.getItemsByCategoryId(categoryId);
+        const category = await query.getCategoryById(categoryId);
 
-        res.render("items", { items });
+        const categoryName = category[0].name;
+        res.render("items", { items, categoryName });
     } catch (err) {
         throw err;
     }

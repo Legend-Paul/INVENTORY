@@ -29,7 +29,8 @@ const getCategoryById = async (categoryId) => {
 
 const getCategoryItems = async (categoryId) => {
     const { rows } = await pool.query(
-        "SELECT name AS item_name, description AS item_description, quantity, price FROM items WHERE category_id = $1",
+        `SELECT id, name AS item_name, description AS item_description, quantity, price 
+        FROM items WHERE category_id = $1`,
         [categoryId]
     );
     return rows;
@@ -87,7 +88,7 @@ const getItemById = async (itemId) => {
     const { rows } = await pool.query("SELECT * FROM items WHERE id = $1", [
         itemId,
     ]);
-    return rows;
+    return rows[0];
 };
 
 const getItemsByCategoryId = async (categoryId) => {

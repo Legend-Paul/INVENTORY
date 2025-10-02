@@ -12,7 +12,6 @@ const getCategoryItems = async (req, res) => {
             const quantities = await query.getCategoryTotalQuantity(categoryId);
             const price = await query.getCategoryTotalPrice(categoryId);
 
-            console.log(items);
             if (category.length === 0) {
                 throw new CustomError("Category not found", 404);
             }
@@ -24,6 +23,7 @@ const getCategoryItems = async (req, res) => {
                 itemsCount,
                 quantities,
                 price,
+                categoryId,
             });
         }
         const itemsCount = await query.getItemCount();

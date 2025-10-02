@@ -15,8 +15,8 @@
     </head>
     <body>
         <%- include ('partials/header') %>
-        <form action="/new/item" method="post">
-            <input type="hidden" name="category" value="<%= categoryId %>" />
+        <form action="<%= path %>" method="post">
+            <h2><%=title %></h2>
             <div class="item-name">
                 <label for="name">Item Name:</label>
                 <input
@@ -24,6 +24,7 @@
                     id="name"
                     name="name"
                     placeholder="e.g Laptop"
+                    value="<%= locals.name? name : '' %>"
                     required
                 />
             </div>
@@ -34,6 +35,7 @@
                     id="amount"
                     name="amount"
                     placeholder="amount e.g 100"
+                    value="<%= locals.amount? amount : '' %>"
                     required
                     min="1"
                 />
@@ -42,6 +44,7 @@
                     id="decimal"
                     name="decimal"
                     placeholder="cents e.g 55"
+                    value="<%= locals.decimal? decimal : '' %>"
                     max="99"
                     min="0"
                 />
@@ -53,6 +56,7 @@
                     id="quantity"
                     name="quantity"
                     placeholder="e.g 10"
+                    value="<%= locals.quantity? quantity : '' %>"
                     required
                 />
             </div>
@@ -64,9 +68,12 @@
                     rows="4"
                     required
                     placeholder="Enter item description..."
-                ></textarea>
+                >
+<%= locals.description? description : '' %>
+            </textarea
+                >
             </div>
-            <button type="submit">Add item</button>
+            <button type="submit"><%=btnText%></button>
         </form>
     </body>
 </html>

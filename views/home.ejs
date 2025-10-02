@@ -47,8 +47,14 @@
                             <h2><%= category.name %></h2>
                         </div>
                         <div class="card-summary">
-                            <p>Total Items: <%= category.quantity %></p>
-                            <p>Total Amount: <%= category.price %></p>
+                            <p>
+                                Total Items: <%= category.quantity ?
+                                category.quantity : 0 %>
+                            </p>
+                            <p>
+                                Total Amount: <%= category.price ?
+                                category.price : 0 %>
+                            </p>
                         </div>
                         <div class="category-description">
                             <p><%= category.description %></p>

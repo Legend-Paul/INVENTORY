@@ -7,7 +7,6 @@ const CustomError = require("../error/customError");
 const getAllCategories = async (req, res) => {
     try {
         const categories = await query.getAllCategories();
-        console.log(categories);
         const categoryCount = await query.getCategorycount();
         const items = await query.getItemCount();
         const quantities = await query.getTotalQuantity();

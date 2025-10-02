@@ -68,6 +68,7 @@ body {
     margin: auto;
     margin-top: 10rem;
     padding: var(--space-lg);
+    position: relative;
 }
 
 i {
@@ -78,8 +79,8 @@ a {
 }
 
 .summary {
-    position: fixed;
-    top: 6rem;
+    position: absolute;
+    top: -3.5rem;
     left: 50%;
     width: clamp(250px, 70%, 600px);
     transform: translateX(-50%);
@@ -90,7 +91,6 @@ a {
     justify-content: space-between;
     align-items: center;
 
-    z-index: 1000;
     .inventory-fields {
         display: flex;
         flex-direction: column;

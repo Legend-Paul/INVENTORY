@@ -8,6 +8,7 @@ header {
     background-color: var(--primary);
     padding: 10px 20px;
     border-radius: var(--space-lg);
+    z-index: 1000;
 
     .header-container {
         display: flex;

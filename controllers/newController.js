@@ -30,7 +30,6 @@ const insertNewItem = async (req, res) => {
         const decimalPlace = decimal ? parseInt(decimal) : 0;
         const price =
             parseInt(amount) + parseFloat(decimalPlace.toFixed(2, 0) / 100);
-        console.log(name, description, quantity, price.toFixed(2, 0), category);
         await query.insertNewItem(name, price, quantity, description, category);
         res.redirect(`/items?category=${category}`);
     } catch (err) {

@@ -9,7 +9,6 @@ const getAllCategories = async () => {
         LEFT JOIN items 
         ON c.id = items.category_id GROUP BY c.id`
     );
-    console.log(rows);
     return rows;
 };
 
@@ -25,7 +24,7 @@ const getCategoryById = async (categoryId) => {
         "SELECT * FROM categories WHERE id = $1",
         [categoryId]
     );
-    return rows;
+    return rows[0];
 };
 
 const getCategoryItems = async (categoryId) => {

@@ -5,6 +5,7 @@ require("dotenv").config();
 const homeRouter = require("./routes/homeRouter");
 const itemsRouter = require("./routes/itemsRouter");
 const newRouter = require("./routes/newRouter");
+const updateRouter = require("./routes/updateRouter");
 const query = require("./db/query");
 const errorController = require("./controllers/errorController");
 const CustomError = require("./error/customError");
@@ -26,6 +27,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+app.use("/update", updateRouter);
 app.use("/new", newRouter);
 app.use("/items", itemsRouter);
 app.use("/", homeRouter);

@@ -15,6 +15,7 @@
     <body>
         <%- include ('partials/header') %>
         <form action="/new/category" method="post">
+            <h2><%= title %></h2>
             <div class="category-name">
                 <label for="name">Category Name:</label>
                 <input
@@ -22,6 +23,7 @@
                     id="name"
                     name="name"
                     placeholder="e.g Electronics"
+                    value="<%= locals.name? name : '' %>"
                     required
                 />
             </div>
@@ -33,7 +35,9 @@
                     rows="4"
                     required
                     placeholder="Enter category description..."
-                ></textarea>
+                >
+<%= locals.description ? description.trim() : '' %></textarea
+                >
             </div>
             <button type="submit">Add Category</button>
         </form>

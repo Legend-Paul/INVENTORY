@@ -1,6 +1,10 @@
 body {
     margin-top: 7rem;
 }
+h2 {
+    margin-bottom: var(--space-lg);
+    text-align: center;
+}
 form {
     max-width: 600px;
     margin: auto;
@@ -16,7 +20,7 @@ form {
         gap: var(--space-md);
     }
     label {
-        font-weight: var(--font-medium);
+        font-weight: var(--font-semibold);
         color: var(--text-dark);
     }
     input,
@@ -37,6 +41,7 @@ form {
         border-color: var(--secondary);
         box-shadow: 0 0 0 3px var(--primary-light);
     }
+
     button {
         padding: var(--space-sm) var(--space-md);
         border: none;

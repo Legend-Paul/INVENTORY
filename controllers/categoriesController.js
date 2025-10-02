@@ -1,4 +1,5 @@
 const query = require("../db/query");
+const pool = require("../db/pool");
 const CustomError = require("../error/customError");
 
 // Get all categories
@@ -6,10 +7,12 @@ const CustomError = require("../error/customError");
 const getAllCategories = async (req, res) => {
     try {
         const categories = await query.getAllCategories();
+        console.log(categories);
         const categoryCount = await query.getCategorycount();
         const items = await query.getItemCount();
         const quantities = await query.getTotalQuantity();
         const price = await query.getTotalPrice();
+
         res.render("home", {
             categories,
             categoryCount,
@@ -18,7 +21,7 @@ const getAllCategories = async (req, res) => {
             price,
         });
     } catch (err) {
-        throw new CustomError("Failed to load categories", 500);
+        throw err;
     }
 };
 

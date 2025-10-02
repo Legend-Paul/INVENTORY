@@ -1,46 +1,23 @@
 const pool = require("./pool");
-const CustomError = require("../error/customError");
 
-const createCategoriesTable = async () => {
-    try {
-        pool.query(`
-				CREATE TABLE IF NOT EXISTS categories (
-					 id INTEGER PRIMARY KEY 
-       						GENERATED ALWAYS AS IDENTITY (
-							SEQUENCE NAME categories_id_seq
-							START WITH 1
-							INCREMENT BY 1
-       									),
-					name VARCHAR(100) NOT NULL,
-					description TEXT
-				);
-			`);
-    } catch (err) {
-        throw new CustomError("Failed to create categories table", 500);
-    }
+const insertSomeItems = async () => {
+    await pool.query(
+        `INSERT INTO items (name, description, quantity, price, category_id) VALUES
+      ('Tablet', 'Android tablet', 7, 300, 1),
+      ('Headphones', 'Wireless headphones', 15, 80, 1),
+      ('Marker', 'Permanent marker', 30, 2, 2),
+      ('Folder', 'Document folder', 25, 5, 2)`
+    );
 };
 
-const createItemsTable = async () => {
-    try {
-        pool.query(`
-			CREATE TABLE IF NOT EXISTS items (
-				id INTEGER PRIMARY KEY 
-	   				GENERATED ALWAYS AS IDENTITY (
-					SEQUENCE NAME items_id_seq
-					START WITH 1
-					INCREMENT BY 1
-	   							),
-				name VARCHAR(100) NOT NULL,
-				price DECIMAL(10,2) NOT NULL,
-				quantity INTEGER NOT NULL,
-				description TEXT,
-				category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE
-			);
-		`);
-    } catch (err) {
-        throw new CustomError("Failed to create items table", 500);
-    }
+const insertSomeCategories = async () => {
+    await pool.query(
+        `INSERT INTO categories (name, description) VALUES
+      ('Books', 'All kinds of books'),
+      ('Furniture', 'Office and home furniture'),
+      ('Groceries', 'Food and household items')`
+    );
 };
 
-createCategoriesTable();
-createItemsTable();
+insertSomeCategories();
+insertSomeItems();

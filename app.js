@@ -8,9 +8,15 @@ const newRouter = require("./routes/newRouter");
 const query = require("./db/query");
 const errorController = require("./controllers/errorController");
 const CustomError = require("./error/customError");
+const { get } = require("node:http");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// query
+//     .getCategoryItems()
+//     .then((res) => console.log(res))
+//     .catch((err) => console.log(err));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

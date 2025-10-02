@@ -1,14 +1,19 @@
 const pool = require("./pool");
 
 // Categories queries
+
 const getAllCategories = async () => {
     const { rows } = await pool.query(
-        "SELECT c.id, c.name, c.description, SUM(quantity) As quantity, SUM(quantity * price) AS price FROM categories AS c  JOIN items ON c.id = items.category_id GROUP BY c.id"
+        `SELECT c.id, c.name, c.description, SUM(quantity) As quantity, SUM(quantity * price) AS price 
+        FROM categories AS c  
+        LEFT JOIN items 
+        ON c.id = items.category_id GROUP BY c.id`
     );
+    console.log(rows);
     return rows;
 };
 
-const addCategory = async (name, description) => {
+const insertNewCategory = async (name, description) => {
     await pool.query(
         "INSERT INTO categories (name, description) VALUES ($1, $2)",
         [name, description]
@@ -25,7 +30,7 @@ const getCategoryById = async (categoryId) => {
 
 const getCategoryItems = async (categoryId) => {
     const { rows } = await pool.query(
-        "SELECT * FROM items WHERE category_id = $1",
+        "SELECT name AS item_name, description AS item_description, quantity, price FROM items WHERE category_id = $1",
         [categoryId]
     );
     return rows;
@@ -131,7 +136,7 @@ const getTotalPrice = async () => {
 
 module.exports = {
     getAllCategories,
-    addCategory,
+    insertNewCategory,
     getCategoryById,
     getCategoryItems,
     deleteCategory,

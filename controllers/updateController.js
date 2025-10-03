@@ -59,14 +59,26 @@ const openUpdateItemPage = async (req, res) => {
     });
 };
 
-const updateItem = async (req, res) => {
-    const id = req.params.id;
-    const categoryId = req.query.category;
-    const { name, description, quantity, amount, decimal } = req.body;
-    const price = parseFloat(`${amount}.${decimal ? decimal : "00"}`);
-    await query.updateItem(id, name, price, quantity, description);
-    res.redirect(`/items?category=${categoryId}`);
-};
+const updateItem = [
+    validate.itemsValidate,
+    async (req, res) => {
+        const errors = validationResult(req);
+        const id = req.params.id;
+        const categoryId = req.query.category;
+        if (!errors.isEmpty()) {
+            return res.status(400).render("newItem", {
+                title: "Update Item",
+                btnText: "Update Item",
+                path: `/update/item/${id}?category=${categoryId}`,
+                errors: errors.array(),
+            });
+        }
+        const { name, description, quantity, amount, decimal } = req.body;
+        const price = parseFloat(`${amount}.${decimal ? decimal : "00"}`);
+        await query.updateItem(id, name, price, quantity, description);
+        res.redirect(`/items?category=${categoryId}`);
+    },
+];
 
 module.exports = {
     openUpdateCategoryPage,

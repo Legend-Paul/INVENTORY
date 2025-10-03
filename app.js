@@ -6,10 +6,10 @@ const homeRouter = require("./routes/homeRouter");
 const itemsRouter = require("./routes/itemsRouter");
 const newRouter = require("./routes/newRouter");
 const updateRouter = require("./routes/updateRouter");
+const deleteRouter = require("./routes/deleteRouter");
 const query = require("./db/query");
 const errorController = require("./controllers/errorController");
 const CustomError = require("./error/customError");
-const { get } = require("node:http");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -27,6 +27,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+app.use("/delete", deleteRouter);
 app.use("/update", updateRouter);
 app.use("/new", newRouter);
 app.use("/items", itemsRouter);

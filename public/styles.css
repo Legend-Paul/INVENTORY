@@ -77,6 +77,10 @@ i {
 }
 a {
     text-decoration: none;
+    &:active,
+    a:focus {
+        outline: none;
+    }
 }
 
 .summary {

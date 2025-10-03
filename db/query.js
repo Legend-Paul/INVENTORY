@@ -4,10 +4,10 @@ const pool = require("./pool");
 
 const getAllCategories = async () => {
     const { rows } = await pool.query(
-        `SELECT c.id, c.name, c.description, SUM(quantity) As quantity, SUM(quantity * price) AS price 
+        `SELECT c.id, c.name, c.description, SUM(quantity) As quantity,COUNT(i.id) As items, SUM(quantity * price) AS price 
         FROM categories AS c  
-        LEFT JOIN items 
-        ON c.id = items.category_id GROUP BY c.id`
+        LEFT JOIN items i
+        ON c.id = i.category_id GROUP BY c.id`
     );
     return rows;
 };

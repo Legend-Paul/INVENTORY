@@ -49,8 +49,13 @@
                         <div class="card-summary">
                             <p>
                                 Total Items: <%= category.quantity ?
+                                category.items : 0 %>
+                            </p>
+                            <p>
+                                Total Quantity: <%= category.quantity ?
                                 category.quantity : 0 %>
                             </p>
+
                             <p>
                                 Total Amount: <%= category.price ?
                                 category.price : 0 %>

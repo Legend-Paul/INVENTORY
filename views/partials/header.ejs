@@ -14,5 +14,16 @@
             <a class="nav-icon" href="/items"><i class="bi bi-list-ul"></i> </a>
         </nav>
     </div>
-    <script></script>
+        <script>
+            // Set active class based on URL
+            const homeIcon = document.querySelector('.nav-icon[href="/"]');
+            const itemsIcon = document.querySelector('.nav-icon[href="/items"]');
+            if (window.location.pathname.includes('/items')) {
+                if (homeIcon) homeIcon.classList.remove('active');
+                if (itemsIcon) itemsIcon.classList.add('active');
+            } else {
+                if (itemsIcon) itemsIcon.classList.remove('active');
+                if (homeIcon) homeIcon.classList.add('active');
+            }
+        </script>
 </header>

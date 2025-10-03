@@ -23,10 +23,12 @@
                     type="text"
                     id="name"
                     name="name"
+                    required
                     placeholder="e.g Electronics"
                     value="<%= locals.name? name : '' %>"
-                    required
                 />
+                <%- include("partials/formError.ejs", {errors: locals.errors ||
+                [], fieldName: "name"}) %>
             </div>
             <div class="category-description">
                 <label for="description">Description:</label>
@@ -39,6 +41,8 @@
                 >
 <%= locals.description ? description.trim() : '' %></textarea
                 >
+                <%- include("partials/formError.ejs", {errors: locals.errors ||
+                [], fieldName: "description"}) %>
             </div>
             <button type="submit"><%= btnText %></button>
         </form>

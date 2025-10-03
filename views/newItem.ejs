@@ -28,6 +28,8 @@
                     value="<%= locals.name? name : '' %>"
                     required
                 />
+                <%- include("partials/formError.ejs", {errors: locals.errors ||
+                [], fieldName: "name"}) %>
             </div>
             <div class="item-amount">
                 <label for="amount">Item Amount:</label>
@@ -40,6 +42,8 @@
                     required
                     min="1"
                 />
+                <%- include("partials/formError.ejs", {errors: locals.errors ||
+                [], fieldName: "amount"}) %>
                 <input
                     type="number"
                     id="decimal"
@@ -49,6 +53,8 @@
                     max="99"
                     min="0"
                 />
+                <%- include("partials/formError.ejs", {errors: locals.errors ||
+                [], fieldName: "decimal"}) %>
             </div>
             <div class="item-quantity">
                 <label for="Quantity">Item Quantity:</label>
@@ -57,9 +63,12 @@
                     id="quantity"
                     name="quantity"
                     placeholder="e.g 10"
+                    min="1"
                     value="<%= locals.quantity? quantity : '' %>"
                     required
                 />
+                <%- include("partials/formError.ejs", {errors: locals.errors ||
+                [], fieldName: "quantity"}) %>
             </div>
             <div class="item-description">
                 <label for="description">Description:</label>
@@ -73,6 +82,8 @@
 <%= locals.description? description : '' %>
             </textarea
                 >
+                <%- include("partials/formError.ejs", {errors: locals.errors ||
+                [], fieldName: "description"}) %>
             </div>
             <button type="submit"><%=btnText%></button>
         </form>

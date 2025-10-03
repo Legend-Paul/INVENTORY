@@ -65,3 +65,7 @@ nav {
         background: var(--secondary);
     }
 }
+
+.active {
+    background-color: var(--secondary);
+}

@@ -1,5 +1,6 @@
 const query = require("../db/query");
-const pool = require("../db/pool");
+const { validationResult } = require("express-validator");
+const validate = require("../utils/validate");
 
 // Categories update controllers
 const openUpdateCategoryPage = async (req, res) => {
@@ -16,11 +17,25 @@ const openUpdateCategoryPage = async (req, res) => {
     });
 };
 
-const updateCategory = async (req, res) => {
-    const { name, description } = req.body;
-    await query.updateCategory(req.params.id, name, description);
-    res.redirect("/");
-};
+const updateCategory = [
+    validate.categoryValidate,
+    async (req, res) => {
+        const { name, description } = req.body;
+        const id = req.params.id;
+        const errors = validationResult(req);
+
+        if (!errors.isEmpty()) {
+            return res.status(400).render("newCategory", {
+                title: "Update Category",
+                path: `/update/category/${id}`,
+                btnText: "Update Category",
+                errors: errors.array(),
+            });
+        }
+        await query.updateCategory(id, name, description);
+        res.redirect("/");
+    },
+];
 
 // Items update controllers
 const openUpdateItemPage = async (req, res) => {

@@ -1,5 +1,6 @@
 const query = require("../db/query");
-
+const { validationResult } = require("express-validator");
+const validate = require("../utils/validate");
 const CustomError = require("../error/customError");
 
 // Render form to create a new category
@@ -11,16 +12,29 @@ const openNewCategoryPage = (req, res) => {
     });
 };
 
-const insertNewCategory = async (req, res) => {
-    const { name, description } = req.body;
-    try {
-        console.log(name, description);
-        await query.insertNewCategory(name, description);
-        res.redirect("/");
-    } catch (err) {
-        throw err;
-    }
-};
+const insertNewCategory = [
+    validate.categoryValidate,
+    async (req, res) => {
+        const { name, description } = req.body;
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).render("newCategory", {
+                title: "New Category",
+                path: "/new/category",
+                btnText: "Add Category",
+                errors: errors.array(),
+            });
+        }
+
+        try {
+            console.log(name, description);
+            await query.insertNewCategory(name, description);
+            res.redirect("/");
+        } catch (err) {
+            throw err;
+        }
+    },
+];
 
 // Render form to create a new item
 const openNewItemPage = async (req, res) => {

@@ -1,0 +1,5 @@
+<div>
+    <% errors.forEach((error)=>{%> <%if(error.path === fieldName){%>
+    <p style="color: red"><%= error.msg %></p>
+    <%}%> <%})%>
+</div>
